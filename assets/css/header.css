@@ -1,0 +1,37 @@
+header {
+    background-color: #c07348
+}
+
+.navbar {
+    background-color: #c07348
+}
+
+#dropdown {
+    background-color: #c07348
+}
+
+.divider {
+    width: 10px;
+    height: auto;
+    display: inline-block;
+}
+
+#dropdown-item {
+    color: #ffffff
+}
+
+#dropdown-item:hover {
+    color: #000000
+}
+
+.nav-link:hover {
+    background-color: #ffffff;
+}
+
+.navbar-dark .navbar-nav .active>.nav-link:hover {
+    color: #000000;
+}
+
+#topBar {
+    background-color: #343a40;
+}

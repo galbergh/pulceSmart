@@ -1,0 +1,29 @@
+.modal-header {
+    background-color: #c07348
+}
+
+.modal-title {
+    color: #ffffff
+}
+
+.modal-footer {
+    background-color: #c07348
+}
+
+#close-header {
+    color: #ffffff
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+img {
+    height: 100%;
+}

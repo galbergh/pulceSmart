@@ -1,0 +1,33 @@
+        .fa-heart {
+            float: right;
+        }
+        
+        #filter-heading {
+            background-color: #c07348;
+        }
+        
+        #filter-tag {
+            color: #ffffff;
+        }
+        
+        #filter-tag:focus {
+            box-shadow: none;
+        }
+        
+        .pagination-lg .page-link {
+            position: relative;
+            display: block;
+            padding: .5rem .75rem;
+            margin-left: -1px;
+            line-height: 1.25;
+            color: #000000;
+            background-color: #ffffff;
+            border: 1px solid #dee2e6;
+        }
+        
+        .pagination-lg .page-item.active .page-link {
+            z-index: 3;
+            color: #fff;
+            background-color: #c07348;
+            border-color: #c07348;
+        }
