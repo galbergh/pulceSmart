@@ -190,6 +190,15 @@ function popolaSottocategorieFiltri() {
     }
 }
 
+function visualizzaAnnunciDellaCategoria() {
+    categoriaMenu = document.getElementById('categoriaFiltro');
+    categoria = categoriaMenu.options[categoriaMenu.selectedIndex].value;
+
+    if (categoria != 'nessuna') {
+        
+    }
+}
+
 function popolaRegioniFiltro() {
     // var cognome = this.value;
     var xttp = new ajaxRequest();

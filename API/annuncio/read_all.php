@@ -13,10 +13,19 @@ function leggiAnnunci($connection) {
 		return $risultato;
     }
 
-    $sql= "SELECT venditore, data_e_ora_pubblicazione, titolo, foto, nome_articolo, prezzo, 
-    categoria_articolo, sottocategoria, regione_vendita, provincia_vendita, comune_vendita, visibilita, 
-    regione_visibilita, provincia_visibilita, citta_visibilita, stato_articolo, stato_usura, tipo_garanzia, 
-    periodo_garanzia, periodo_utilizzo FROM annuncio WHERE stato_annuncio = 'In vendita';";
+	if (isset($_SESSION["id"])) {
+		$ID_utente = $_SESSION["id"];
+		
+		$sql= "SELECT venditore, data_e_ora_pubblicazione, titolo, foto, nome_articolo, prezzo, 
+		categoria_articolo, sottocategoria, regione_vendita, provincia_vendita, comune_vendita, visibilita, 
+		regione_visibilita, provincia_visibilita, citta_visibilita, stato_articolo, stato_usura, tipo_garanzia, 
+		periodo_garanzia, periodo_utilizzo FROM annuncio WHERE stato_annuncio = 'In vendita' AND NOT venditore = $ID_utente;";
+	} else {
+		$sql= "SELECT venditore, data_e_ora_pubblicazione, titolo, foto, nome_articolo, prezzo, 
+    	categoria_articolo, sottocategoria, regione_vendita, provincia_vendita, comune_vendita, visibilita, 
+    	regione_visibilita, provincia_visibilita, citta_visibilita, stato_articolo, stato_usura, tipo_garanzia, 
+    	periodo_garanzia, periodo_utilizzo FROM annuncio WHERE stato_annuncio = 'In vendita';";
+	}
 
 	$res = $connection->query($sql);
 

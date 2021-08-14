@@ -11,6 +11,7 @@ window.addEventListener('DOMContentLoaded', popolaStatoUsura);
 document.getElementById("confermaRegistrazione").addEventListener("click", registraUtente);
 document.getElementById("confermaInserimentoAnnuncio").addEventListener("click", inserisciAnnuncio);
 document.getElementById('categoriaFiltro').addEventListener('change', popolaSottocategorieFiltri);
+document.getElementById("sottocategoriaFiltro").addEventListener("change", visualizzaAnnunciDellaCategoria)
 document.getElementById('categoriaArticolo').addEventListener('change', popolaSottocategorieAnnunci);
 document.getElementById('regioneFiltro').addEventListener('change', popolaProvinceFiltro);
 document.getElementById('regioneRegistrazione').addEventListener('change', popolaProvinceRegistrazione);
