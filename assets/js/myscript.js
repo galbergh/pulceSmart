@@ -190,13 +190,28 @@ function popolaSottocategorieFiltri() {
     }
 }
 
-function visualizzaAnnunciDellaCategoria() {
-    categoriaMenu = document.getElementById('categoriaFiltro');
-    categoria = categoriaMenu.options[categoriaMenu.selectedIndex].value;
+function filtraRicerca() {
+    sottocategoriaMenu = document.getElementById('sottocategoriaFiltro');
+    sottocategoria = sottocategoriaMenu.options[sottocategoriaMenu.selectedIndex].value;
 
-    if (categoria != 'nessuna') {
-        
-    }
+    provinciaMenu = document.getElementById('provinciaFiltro');
+    provincia = provinciaMenu.options[provinciaMenu.selectedIndex].value;
+
+    spuntaArticoliNuovi = document.getElementById("articoliNuovi").value;
+
+    spuntaArticoliUsati = document.getElementById("articoliNuovi").value;
+
+    var data = JSON.stringify({
+        "sottocategoria_articolo": sottocategoria,
+        "provincia_vendita": provincia,
+        "spunta_articoli_nuovi": spuntaArticoliNuovi,
+        "spunta_articoli_usati": spuntaArticoliUsati
+    });
+
+    var xhr = new ajaxRequest();
+    xhr.open("GET", "API/annuncio/read_all.php", true);
+    xhr.setRequestHeader("Content-type", "application/json;charset=UTF-8");
+    xhr.send(data);
 }
 
 function popolaRegioniFiltro() {

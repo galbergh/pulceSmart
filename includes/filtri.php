@@ -87,13 +87,13 @@
     <div id="collapseThree" class="collapse" aria-labelledby="filter-heading" data-parent="#accordion">
       <div class="card-body">
         <div class="divider"></div> <div class="divider"></div>
-          <input type="checkbox" class="form-check-input" id="nuovo" checked>
+          <input type="checkbox" class="form-check-input" id="articoliNuovi" checked>
           <label class="form-check-label" for="acquirente">
             Nuovi
           </label>
         <br>
         <div class="divider"></div> <div class="divider"></div>
-          <input type="checkbox" class="form-check-input" id="usato" checked>
+          <input type="checkbox" class="form-check-input" id="articoliUsati" checked>
           <label class="form-check-label" for="venditore">
             Usati
           </label>

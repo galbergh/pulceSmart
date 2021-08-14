@@ -3,6 +3,7 @@ include 'includes/connection.php';
 //header('content-type: application/json');
 //header('Access-Control-Allow-Methods: GET');
 
+
 function leggiAnnunci($connection) {
     $annunci = array();
     $risultato = array("status"=>"ok","msg"=>"", "contenuto"=>"");
