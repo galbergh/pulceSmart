@@ -185,6 +185,8 @@ function popolaSottocategorieFiltri() {
         };
         xttp.open("GET", "includes/getSottocategorie.php?categoria=" + categoria, true);
         xttp.send();
+    } else {
+        document.getElementById("sottocategoriaFiltro").innerHTML = "<option value=nessuna> </option>";
     }
 }
 
@@ -244,6 +246,8 @@ function popolaProvinceFiltro() {
         };
         xttp.open("GET", "includes/getProvincia.php?regione=" + regione, true);
         xttp.send();
+    } else {
+        document.getElementById("provinciaFiltro").innerHTML = "<option value=nessuna> </option>";
     }
 }
 
