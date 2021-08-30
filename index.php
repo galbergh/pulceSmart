@@ -93,7 +93,7 @@
                 </span>
               </a>
             </div>
-            <div class="row justify-content-center">
+            <div class="row justify-content-center" id="spazioAnnunci">
 
               <?php
                 include("includes/listaAnnunci.php");

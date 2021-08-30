@@ -13,7 +13,9 @@ document.getElementById("confermaInserimentoAnnuncio").addEventListener("click",
 document.getElementById('categoriaFiltro').addEventListener('change', popolaSottocategorieFiltri);
 document.getElementById('regioneFiltro').addEventListener('change', popolaProvinceFiltro);
 
+document.getElementById("categoriaFiltro").addEventListener("change", filtraRicerca);
 document.getElementById("sottocategoriaFiltro").addEventListener("change", filtraRicerca);
+document.getElementById("regioneFiltro").addEventListener("change", filtraRicerca);
 document.getElementById("provinciaFiltro").addEventListener("change", filtraRicerca);
 document.getElementById("articoliNuovi").addEventListener("change", filtraRicerca);
 document.getElementById("articoliUsati").addEventListener("change", filtraRicerca);

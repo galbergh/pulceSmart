@@ -67,6 +67,8 @@ function popolaProvinceRegistrazione() {
         };
         xttp.open("GET", "includes/getProvincia.php?regione=" + regione, true);
         xttp.send();
+    } else {
+        document.getElementById("provinciaRegistrazione").innerHTML = "<option value=nessuna> </option>";
     }
 }
 
@@ -126,6 +128,8 @@ function popolaSottocategorieAnnunci() {
         };
         xttp.open("GET", "includes/getSottocategorie.php?categoria=" + categoria, true);
         xttp.send();
+    } else {
+        document.getElementById("sottocategoriaArticolo").innerHTML = "<option value=nessuna> </option>";
     }
 }
 
@@ -186,7 +190,7 @@ function popolaSottocategorieFiltri() {
         xttp.open("GET", "includes/getSottocategorie.php?categoria=" + categoria, true);
         xttp.send();
     } else {
-        document.getElementById("sottocategoriaFiltro").innerHTML = "<option value=nessuna> </option>";
+        document.getElementById("sottocategoriaFiltro").innerHTML = "<option value=nessuna></option>";
     }
 }
 
@@ -197,9 +201,9 @@ function filtraRicerca() {
     provinciaMenu = document.getElementById('provinciaFiltro');
     provincia = provinciaMenu.options[provinciaMenu.selectedIndex].value;
 
-    spuntaArticoliNuovi = document.getElementById("articoliNuovi").value;
+    spuntaArticoliNuovi = document.getElementById("articoliNuovi").checked;
 
-    spuntaArticoliUsati = document.getElementById("articoliNuovi").value;
+    spuntaArticoliUsati = document.getElementById("articoliNuovi").checked;
 
     var data = JSON.stringify({
         "sottocategoria_articolo": sottocategoria,
@@ -208,8 +212,10 @@ function filtraRicerca() {
         "spunta_articoli_usati": spuntaArticoliUsati
     });
 
+    document.getElementById("spazioAnnunci").innerHTML = "";
+
     var xhr = new ajaxRequest();
-    xhr.open("GET", "API/annuncio/read_all.php", true);
+    xhr.open("GET", "API/annuncio/read.php", true);
     xhr.setRequestHeader("Content-type", "application/json;charset=UTF-8");
     xhr.send(data);
 }
@@ -372,6 +378,8 @@ function popolaProvinceVendita() {
         };
         xttp.open("GET", "includes/getProvincia.php?regione=" + regione, true);
         xttp.send();
+    } else {
+        document.getElementById("provinciaVendita").innerHTML = "<option value=nessuna> </option>";
     }
 }
 
@@ -405,6 +413,8 @@ function popolaProvinceVisibilita() {
         };
         xttp.open("GET", "includes/getProvincia.php?regione=" + regione, true);
         xttp.send();
+    } else {
+        document.getElementById("provinciaVisibilita").innerHTML = "<option value=nessuna> </option>";
     }
 }
 

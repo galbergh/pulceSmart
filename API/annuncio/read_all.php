@@ -35,7 +35,7 @@ function leggiAnnunci($connection) {
 		$risultato["status"]="ko";
 		$risultato["msg"]=$msg;			
 	} elseif($res->num_rows==0) {
-		$msg = "La tabella non contiene tuple";
+		$msg = "Nessun annuncio corrisponde ai criteri di ricerca...";
 		$risultato["status"]="ko";
 		$risultato["msg"]=$msg;		
 	} else {
@@ -89,7 +89,7 @@ function visualizzaAnnunci($connection, $annunci) {
 			$risultato["status"]="ko";
 			$risultato["msg"]=$msg;			
 		} elseif ($res->num_rows==0) {
-			$msg = "La tabella non contiene tuple";
+			$msg = "Nessun annuncio corrisponde ai criteri di ricerca...";
 			$risultato["status"]="ko";
 			$risultato["msg"]=$msg;		
 		} else {
@@ -105,32 +105,39 @@ function visualizzaAnnunci($connection, $annunci) {
 		$nomeArticolo = $annuncio["nome_articolo"];
 		$prezzo = $annuncio["prezzo"];
 
-		echo "<div class='col-lg-4 col-md-6 mb-4'> 
-		<div class='card h-100'>
-		<a href='annuncio.php'>
-		<img class='card-img-top' src=$foto>
-		</a>
-		<div class='card-body'>
-		<h4 class='card-title'>
-		<a style='color:#c07348' href='annuncio.php'>
-		$titolo
-		</a>
-		</h4>
-		<p>
-		<strong>
-		$prezzo
-		</strong>
-		<span><i class='far fa-euro-sign'></i></span>
-		</p>
-		<p> Venditore: $venditore <i class='far fa-star'></i><i class='far fa-star'></i><i class='far fa-star'></i><i
-		class='far fa-star'></i><i class='far fa-star'></i></p>
-		</div>
-		<div class='card-footer'>
-		
-		<i class='far fa-heart'></i>
-		</div>
-		</div>
-		</div>";
+		echo   "<div class='col-lg-4 col-md-6 mb-4'> 
+					<div class='card h-100'>
+						<a href='annuncio.php'>
+							<img class='card-img-top' src=$foto>
+						</a>
+						<div class='card-body'>
+							<h4 class='card-title'>
+								<a style='color:#c07348' href='annuncio.php'>
+									$titolo
+								</a>
+							</h4>
+							<p>
+								<strong>
+									$prezzo
+								</strong>
+								<span>
+									<i class='far fa-euro-sign'></i>
+								</span>
+							</p>
+							<p> 
+								Venditore: $venditore 
+								<i class='far fa-star'></i>
+								<i class='far fa-star'></i>
+								<i class='far fa-star'></i>
+								<i class='far fa-star'></i>
+								<i class='far fa-star'></i>
+							</p>
+						</div>
+						<div class='card-footer'>
+							<i class='far fa-heart'></i>
+						</div>
+					</div>
+				</div>";
 
 	}
 }
