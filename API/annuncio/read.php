@@ -1,9 +1,11 @@
 <?php
-include 'includes/connection.php';
-//header('content-type: application/json');
-//header('Access-Control-Allow-Methods: GET');
+include '../../includes/connection.php';
+header('content-type: application/json');
+header('Access-Control-Allow-Methods: GET');
 
 $_GET = json_decode(file_get_contents('php://input'),true);
+
+var_dump($_GET);
 
 $subcategory = $_GET["sottocategoria_articolo"];
 $province = $_GET["provincia_vendita"];
@@ -45,6 +47,7 @@ function convertiFiltri($subcat, $prov, $new, $used) {
         $stringa = "AND sottocategoria = $subcat AND provincia_vendita = $prov AND NOT stato_articolo = 'Nuovo' AND NOT stato_articolo = 'Usato'";
     } 
     return $stringa;
+	var_dump($stringa);
 }
 
 function leggiAnnunci($connection, $filtersString) {
@@ -63,7 +66,7 @@ function leggiAnnunci($connection, $filtersString) {
 		$sql= "SELECT venditore, data_e_ora_pubblicazione, titolo, foto, nome_articolo, prezzo, 
 		categoria_articolo, sottocategoria, regione_vendita, provincia_vendita, comune_vendita, visibilita, 
 		regione_visibilita, provincia_visibilita, citta_visibilita, stato_articolo, stato_usura, tipo_garanzia, 
-		periodo_garanzia, periodo_utilizzo FROM annuncio WHERE stato_annuncio = 'In vendita' AND NOT venditore = $ID_utente" . $filtersString ";";
+		periodo_garanzia, periodo_utilizzo FROM annuncio WHERE stato_annuncio = 'In vendita' AND NOT venditore = $ID_utente" . $filtersString . ";";
 	} else {
 		$sql= "SELECT venditore, data_e_ora_pubblicazione, titolo, foto, nome_articolo, prezzo, 
     	categoria_articolo, sottocategoria, regione_vendita, provincia_vendita, comune_vendita, visibilita, 
@@ -119,7 +122,7 @@ function visualizzaAnnunci($connection, $annunci) {
 		return $risultato;
     }
 
-    $innerHTMLannunci = ""
+    $innerHTMLannunci = "";
 
 	foreach ($annunci AS $annuncio) {
 
