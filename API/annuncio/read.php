@@ -1,56 +1,75 @@
 <?php
 include '../../includes/connection.php';
-header('content-type: application/json');
-header('Access-Control-Allow-Methods: GET');
+//header('content-type: application/json');
+//header('Access-Control-Allow-Methods: POST');
 
-$_GET = json_decode(file_get_contents('php://input'),true);
+//$json = file_get_contents("php://input");
 
-var_dump($_GET);
+//var_dump($json);
 
-$subcategory = $_GET["sottocategoria_articolo"];
-$province = $_GET["provincia_vendita"];
-$newArticles = $_GET["spunta_articoli_nuovi"];
-$usedArticles = $_GET["spunta_articoli_usati"];
+//$json = json_decode($json, true);
 
-function convertiFiltri($subcat, $prov, $new, $used) {
-    if ($subcat == "nessuna" && $prov == "nessuna" && $new == TRUE && $used == TRUE) {
-        $stringa = "";
-    } elseif ($subcat != "nessuna" && $prov == "nessuna" && $new == TRUE && $used == TRUE) {
-        $stringa = "AND sottocategoria = $subcat";
-    } elseif ($subcat == "nessuna" && $prov != "nessuna" && $new == TRUE && $used == TRUE) {
-        $stringa = "AND provincia_vendita = $prov";
-    } elseif ($subcat == "nessuna" && $prov == "nessuna" && $new == FALSE && $used == TRUE) {
-        $stringa = "AND NOT stato_articolo = 'Nuovo'";
-    } elseif ($subcat == "nessuna" && $prov == "nessuna" && $new == TRUE && $used == FALSE) {
-        $stringa = "AND NOT stato_articolo = 'Usato'";
-    } elseif ($subcat != "nessuna" && $prov != "nessuna" && $new == TRUE && $used == TRUE) {
-        $stringa = "AND sottocategoria = $subcat AND provincia_vendita = $prov";
-    } elseif ($subcat == "nessuna" && $prov != "nessuna" && $new == FALSE && $used == TRUE) {
-        $stringa = "AND provincia_vendita = $prov AND NOT stato_articolo = 'Nuovo'";
-    } elseif ($subcat == "nessuna" && $prov == "nessuna" && $new == FALSE && $used == FALSE) {
-        $stringa = "AND NOT stato_articolo = 'Nuovo' AND NOT stato_articolo = 'Usato'";
-    } elseif ($subcat != "nessuna" && $prov == "nessuna" && $new == FALSE && $used == TRUE) {
-        $stringa = "AND sottocategoria = $subcat AND NOT stato_articolo = 'Nuovo'";
-    } elseif ($subcat != "nessuna" && $prov == "nessuna" && $new == TRUE && $used == FALSE) {
-        $stringa = "AND sottocategoria = $subcat AND NOT stato_articolo = 'Usato'";
-    } elseif ($subcat == "nessuna" && $prov != "nessuna" && $new == TRUE && $used == FALSE) {
-        $stringa = "AND provincia_vendita = $prov AND NOT stato_articolo = 'Usato'";
-    } elseif ($subcat != "nessuna" && $prov != "nessuna" && $new == FALSE && $used == TRUE) {
-        $stringa = "AND sottocategoria = $subcat AND provincia_vendita = $prov AND NOT stato_articolo = 'Nuovo'";
-    } elseif ($subcat != "nessuna" && $prov != "nessuna" && $new == TRUE && $used == FALSE) {
-        $stringa = "AND sottocategoria = $subcat AND provincia_vendita = $prov AND NOT stato_articolo = 'Usato'";
-    } elseif ($subcat != "nessuna" && $prov == "nessuna" && $new == FALSE && $used == FALSE) {
-        $stringa = "AND sottocategoria = $subcat AND NOT stato_articolo = 'Nuovo' AND NOT stato_articolo = 'Usato'";
-    } elseif ($subcat == "nessuna" && $prov != "nessuna" && $new == FALSE && $used == FALSE) {
-        $stringa = "AND provincia_vendita = $prov AND NOT stato_articolo = 'Nuovo' AND NOT stato_articolo = 'Usato'";
-    } elseif ($subcat != "nessuna" && $prov != "nessuna" && $new == FALSE && $used == FALSE) {
-        $stringa = "AND sottocategoria = $subcat AND provincia_vendita = $prov AND NOT stato_articolo = 'Nuovo' AND NOT stato_articolo = 'Usato'";
-    } 
-    return $stringa;
-	var_dump($stringa);
+//$json_err = json_last_error(); 
+
+//var_dump($_POST);
+//var_dump($json_err);
+
+$category = isset($_GET["categoria"])?$_GET["categoria"] : "nessuna";
+
+$subcategory = isset($_GET["sottocategoria"])?$_GET["sottocategoria"] : "nessuna";
+
+if ($category != "nessuna" && $subcategory != "nessuna") {
+	$sql = "SELECT id FROM categoria WHERE categoria = '$category' AND sottocategoria = '$subcategory'";
+
+	$res = $connection->query($sql);
+	$row = $res->fetch_assoc();
+
+	$subcategory = $row["id"];
 }
 
-function leggiAnnunci($connection, $filtersString) {
+$province = isset($_GET["provincia"])?$_GET["provincia"] : "nessuna";
+$newArticles = $_GET["spuntaNuovi"];
+$usedArticles = $_GET["spuntaUsati"];
+
+function convertiFiltri($subcat, $prov, $new, $used) {
+    if ($subcat == "nessuna" && $prov == "nessuna" && $new == true && $used == true) {
+        $stringa = "";
+    } elseif ($subcat != "nessuna" && $prov == "nessuna" && $new == true && $used == true) {
+        $stringa = " AND sottocategoria = '$subcat'";
+    } elseif ($subcat == "nessuna" && $prov != "nessuna" && $new == true && $used == true) {
+        $stringa = " AND provincia_vendita = '$prov'";
+    } elseif ($subcat == "nessuna" && $prov == "nessuna" && $new == false && $used == true) {
+        $stringa = " AND NOT stato_articolo = 'Nuovo'";
+    } elseif ($subcat == "nessuna" && $prov == "nessuna" && $new == true && $used == false) {
+        $stringa = " AND NOT stato_articolo = 'Usato'";
+    } elseif ($subcat != "nessuna" && $prov != "nessuna" && $new == true && $used == true) {
+        $stringa = " AND sottocategoria = '$subcat' AND provincia_vendita = '$prov'";
+    } elseif ($subcat == "nessuna" && $prov != "nessuna" && $new == false && $used == true) {
+        $stringa = " AND provincia_vendita = '$prov' AND NOT stato_articolo = 'Nuovo'";
+    } elseif ($subcat == "nessuna" && $prov == "nessuna" && $new == false && $used == false) {
+        $stringa = " AND NOT stato_articolo = 'Nuovo' AND NOT stato_articolo = 'Usato'";
+    } elseif ($subcat != "nessuna" && $prov == "nessuna" && $new == false && $used == true) {
+        $stringa = " AND sottocategoria = '$subcat' AND NOT stato_articolo = 'Nuovo'";
+    } elseif ($subcat != "nessuna" && $prov == "nessuna" && $new == true && $used == false) {
+        $stringa = " AND sottocategoria = '$subcat' AND NOT stato_articolo = 'Usato'";
+    } elseif ($subcat == "nessuna" && $prov != "nessuna" && $new == true && $used == false) {
+        $stringa = " AND provincia_vendita = '$prov' AND NOT stato_articolo = 'Usato'";
+    } elseif ($subcat != "nessuna" && $prov != "nessuna" && $new == false && $used == true) {
+        $stringa = " AND sottocategoria = '$subcat' AND provincia_vendita = '$prov' AND NOT stato_articolo = 'Nuovo'";
+    } elseif ($subcat != "nessuna" && $prov != "nessuna" && $new == true && $used == false) {
+        $stringa = " AND sottocategoria = '$subcat' AND provincia_vendita = '$prov' AND NOT stato_articolo = 'Usato'";
+    } elseif ($subcat != "nessuna" && $prov == "nessuna" && $new == false && $used == false) {
+        $stringa = " AND sottocategoria = '$subcat' AND NOT stato_articolo = 'Nuovo' AND NOT stato_articolo = 'Usato'";
+    } elseif ($subcat == "nessuna" && $prov != "nessuna" && $new == false && $used == false) {
+        $stringa = " AND provincia_vendita = '$prov' AND NOT stato_articolo = 'Nuovo' AND NOT stato_articolo = 'Usato'";
+    } elseif ($subcat != "nessuna" && $prov != "nessuna" && $new == false && $used == false) {
+        $stringa = " AND sottocategoria = '$subcat' AND provincia_vendita = '$prov' AND NOT stato_articolo = 'Nuovo' AND NOT stato_articolo = 'Usato'";
+    } 
+    return $stringa;
+	//var_dump($stringa);
+}
+
+function leggiAnnunciFiltrati($connection, $filtersString) {
     $annunci = array();
     $risultato = array("status"=>"ok","msg"=>"", "contenuto"=>"");
 
@@ -63,15 +82,15 @@ function leggiAnnunci($connection, $filtersString) {
 	if (isset($_SESSION["id"])) {
 		$ID_utente = $_SESSION["id"];
 		
-		$sql= "SELECT venditore, data_e_ora_pubblicazione, titolo, foto, nome_articolo, prezzo, 
-		categoria_articolo, sottocategoria, regione_vendita, provincia_vendita, comune_vendita, visibilita, 
-		regione_visibilita, provincia_visibilita, citta_visibilita, stato_articolo, stato_usura, tipo_garanzia, 
-		periodo_garanzia, periodo_utilizzo FROM annuncio WHERE stato_annuncio = 'In vendita' AND NOT venditore = $ID_utente" . $filtersString . ";";
+		$sql= "SELECT venditore, data_e_ora_pubblicazione, titolo, foto, nome_articolo, prezzo, categoria_articolo, 
+		sottocategoria, regione_vendita, provincia_vendita, comune_vendita, visibilita, regione_visibilita, provincia_visibilita, 
+		citta_visibilita, stato_articolo, stato_usura, tipo_garanzia, periodo_garanzia, periodo_utilizzo FROM annuncio 
+		WHERE stato_annuncio = 'In vendita' AND NOT venditore = $ID_utente" . $filtersString . ";";
 	} else {
-		$sql= "SELECT venditore, data_e_ora_pubblicazione, titolo, foto, nome_articolo, prezzo, 
-    	categoria_articolo, sottocategoria, regione_vendita, provincia_vendita, comune_vendita, visibilita, 
-    	regione_visibilita, provincia_visibilita, citta_visibilita, stato_articolo, stato_usura, tipo_garanzia, 
-    	periodo_garanzia, periodo_utilizzo FROM annuncio WHERE stato_annuncio = 'In vendita'" . $filtersString . ";";
+		$sql= "SELECT venditore, data_e_ora_pubblicazione, titolo, foto, nome_articolo, prezzo, categoria_articolo,
+		sottocategoria, regione_vendita, provincia_vendita, comune_vendita, visibilita, regione_visibilita, provincia_visibilita, 
+		citta_visibilita, stato_articolo, stato_usura, tipo_garanzia, periodo_garanzia, periodo_utilizzo FROM annuncio 
+		WHERE stato_annuncio = 'In vendita'" . $filtersString . ";";
 	}
 
 	$res = $connection->query($sql);
@@ -114,97 +133,91 @@ function leggiAnnunci($connection, $filtersString) {
 	mysqli_close($connection);
 }
 
-function visualizzaAnnunci($connection, $annunci) {
+function visualizzaAnnunciFiltrati($connection, $annunci) {
 
 	if ($connection->connect_errno) {
 		$risultato["status"]="ko";
-		$risultato["msg"]="errore nella connessione al db " . $connection->connect_error;
+		$risultato["msg"]="Errore nella connessione al db " . $connection->connect_error;
 		return $risultato;
-    }
+    } else {
 
-    $innerHTMLannunci = "";
+		$innerHTMLannunci = "";
 
-	foreach ($annunci AS $annuncio) {
+		foreach ($annunci AS $annuncio) {
 
-		$venditore = $annuncio["venditore"];
+			$venditore = $annuncio["venditore"];
 
-		$sql= "SELECT nome_utente FROM utente WHERE id = $venditore;";
-
-		$res = $connection->query($sql);
-
-		if ($res==null) {
-			$msg = "Si sono verificati i seguenti errori:<br/>" . $res->error;
-			$risultato["status"]="ko";
-			$risultato["msg"]=$msg;			
-		} elseif ($res->num_rows==0) {
-			$msg = "Nessun annuncio corrisponde ai criteri di ricerca...";
-			$risultato["status"]="ko";
-			$risultato["msg"]=$msg;		
-		} else {
+			$sql= "SELECT nome_utente FROM utente WHERE id = $venditore;";
+	
+			$res = $connection->query($sql);
+			
 			while ($row=$res->fetch_assoc()) {
 				$annuncio["venditore"] = $row["nome_utente"];
 			}
+	
+			$venditore = $annuncio["venditore"];
+			$dataEOraPubblicazione = $annuncio["data_e_ora_pubblicazione"];
+			$titolo = $annuncio["titolo"];
+			$foto = base64_decode($annuncio["foto"]);
+			$nomeArticolo = $annuncio["nome_articolo"];
+			$prezzo = $annuncio["prezzo"];
+	
+			$innerHTMLannunci = $innerHTMLannunci . 
+					"<div class='col-lg-4 col-md-6 mb-4'> 
+						<div class='card h-100'>
+							<a href='annuncio.php'>
+								<img class='card-img-top' src=$foto>
+							</a>
+							<div class='card-body'>
+								<h4 class='card-title'>
+									<a style='color:#c07348' href='annuncio.php'>
+										$titolo
+									</a>
+								</h4>
+								<p>
+									<strong>
+										$prezzo
+									</strong>
+									<span>
+										<i class='far fa-euro-sign'></i>
+									</span>
+								</p>
+								<p> 
+									Venditore: $venditore 
+									<i class='far fa-star'></i>
+									<i class='far fa-star'></i>
+									<i class='far fa-star'></i>
+									<i class='far fa-star'></i>
+									<i class='far fa-star'></i>
+								</p>
+							</div>
+							<div class='card-footer'>
+								<i class='far fa-heart'></i>
+							</div>
+						</div>
+					</div>";
 		}
-
-		$venditore = $annuncio["venditore"];
-		$dataEOraPubblicazione = $annuncio["data_e_ora_pubblicazione"];
-		$titolo = $annuncio["titolo"];
-		$foto = base64_decode($annuncio["foto"]);
-		$nomeArticolo = $annuncio["nome_articolo"];
-		$prezzo = $annuncio["prezzo"];
-
-		$innerHTMLannunci = $innerHTMLannunci . 
-                "<div class='col-lg-4 col-md-6 mb-4'> 
-					<div class='card h-100'>
-						<a href='annuncio.php'>
-							<img class='card-img-top' src=$foto>
-						</a>
-						<div class='card-body'>
-							<h4 class='card-title'>
-								<a style='color:#c07348' href='annuncio.php'>
-									$titolo
-								</a>
-							</h4>
-							<p>
-								<strong>
-									$prezzo
-								</strong>
-								<span>
-									<i class='far fa-euro-sign'></i>
-								</span>
-							</p>
-							<p> 
-								Venditore: $venditore 
-								<i class='far fa-star'></i>
-								<i class='far fa-star'></i>
-								<i class='far fa-star'></i>
-								<i class='far fa-star'></i>
-								<i class='far fa-star'></i>
-							</p>
-						</div>
-						<div class='card-footer'>
-							<i class='far fa-heart'></i>
-						</div>
-					</div>
-				</div>";
-
+		//$risultato["status"]="ok";
+		//$risultato["msg"]="Annunci filtrati...";
+		//$risultato["contenuto"]=$innerHTMLannunci;
 	}
-    ?>
-    <script>
-        document.getElementById("spazioAnnunci").innerHTML = $innerHTMLannunci;
-    </script>
-    <?php
+	return $innerHTMLannunci;
+	mysqli_close($connection);
 }
 
 $stringaFiltri = convertiFiltri($subcategory, $province, $newArticles, $usedArticles);
 
-$result = leggiAnnunci($connection, $stringaFiltri);
+$result = leggiAnnunciFiltrati($connection, $stringaFiltri);
+
+$risposta = "";
 
 if ($result["status"]=="ok") {
-  visualizzaAnnunci($connection, $result["contenuto"]);
+	$risposta = visualizzaAnnunciFiltrati($connection, $result["contenuto"]);
 } else {
   echo $result["msg"];
 }
+
+echo $risposta;
 
 
 //$id=isset($_GET['id'])?$_GET['id']:die();

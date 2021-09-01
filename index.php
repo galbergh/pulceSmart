@@ -100,6 +100,7 @@
               ?>
 
             </div>
+            <br>
             <div class="row justify-content-center">
               <nav aria-label="...">
                 <ul class="pagination pagination-lg">

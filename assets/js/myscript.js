@@ -195,29 +195,37 @@ function popolaSottocategorieFiltri() {
 }
 
 function filtraRicerca() {
+    categoriaMenu = document.getElementById('categoriaFiltro');
+    categoria = categoriaMenu.options[categoriaMenu.selectedIndex].value;
+
     sottocategoriaMenu = document.getElementById('sottocategoriaFiltro');
     sottocategoria = sottocategoriaMenu.options[sottocategoriaMenu.selectedIndex].value;
+    console.log(sottocategoria);
 
     provinciaMenu = document.getElementById('provinciaFiltro');
     provincia = provinciaMenu.options[provinciaMenu.selectedIndex].value;
+    console.log(provincia);
 
     spuntaArticoliNuovi = document.getElementById("articoliNuovi").checked;
+    console.log(spuntaArticoliNuovi);
 
     spuntaArticoliUsati = document.getElementById("articoliNuovi").checked;
-
-    var data = JSON.stringify({
-        "sottocategoria_articolo": sottocategoria,
-        "provincia_vendita": provincia,
-        "spunta_articoli_nuovi": spuntaArticoliNuovi,
-        "spunta_articoli_usati": spuntaArticoliUsati
-    });
-
-    document.getElementById("spazioAnnunci").innerHTML = "";
+    console.log(spuntaArticoliUsati);
 
     var xhr = new ajaxRequest();
-    xhr.open("GET", "API/annuncio/read.php", true);
-    xhr.setRequestHeader("Content-type", "application/json;charset=UTF-8");
-    xhr.send(data);
+
+    xhr.onreadystatechange = function() {
+        // console.log(this.readyState + ' ' + this.status);
+        if (this.readyState == 4 && this.status == 200) {
+            //console.log(this.response);
+            annunciFiltrati = this.response;
+            spazio = document.getElementById('spazioAnnunci');
+            spazio.innerHTML = annunciFiltrati;
+        }
+    };
+    
+    xhr.open("GET", "API/annuncio/read.php?categoria=" + categoria + "&sottocategoria=" + sottocategoria + "&provincia=" + provincia + "&spuntaNuovi=" + spuntaArticoliNuovi + "&spuntaUsati=" + spuntaArticoliUsati, true);
+    xhr.send();
 }
 
 function popolaRegioniFiltro() {
