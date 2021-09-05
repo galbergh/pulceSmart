@@ -58,6 +58,9 @@ function popolaProvinceRegistrazione() {
                         var item = document.createElement('option');
                         item.setAttribute("value", province[i].prov);
                         item.innerText = province[i].prov;
+                        if (i == 0) {
+                            item.setAttribute("selected", "selected");
+                        }
                         menu.appendChild(item);
                     }
                 } else {
@@ -119,6 +122,9 @@ function popolaSottocategorieAnnunci() {
                         var item = document.createElement('option');
                         item.setAttribute("value", sottocategorie[i].sottocategoria);
                         item.innerText = sottocategorie[i].sottocategoria;
+                        if (i == 0) {
+                            item.setAttribute("selected", "selected");
+                        }
                         menu.appendChild(item);
                     }
                 } else {
@@ -180,8 +186,14 @@ function popolaSottocategorieFiltri() {
                         var item = document.createElement('option');
                         item.setAttribute("value", sottocategorie[i].sottocategoria);
                         item.innerText = sottocategorie[i].sottocategoria;
+                        if (i == 0) {
+                            item.setAttribute("selected", "selected");
+                        }
                         menu.appendChild(item);
                     }
+
+                    filtraRicerca()
+
                 } else {
                     alert(risposta.msg);
                 }
@@ -191,12 +203,15 @@ function popolaSottocategorieFiltri() {
         xttp.send();
     } else {
         document.getElementById("sottocategoriaFiltro").innerHTML = "<option value=nessuna></option>";
+
+        filtraRicerca()
     }
 }
 
 function filtraRicerca() {
     categoriaMenu = document.getElementById('categoriaFiltro');
     categoria = categoriaMenu.options[categoriaMenu.selectedIndex].value;
+    console.log(categoria);
 
     sottocategoriaMenu = document.getElementById('sottocategoriaFiltro');
     sottocategoria = sottocategoriaMenu.options[sottocategoriaMenu.selectedIndex].value;
@@ -204,12 +219,12 @@ function filtraRicerca() {
 
     provinciaMenu = document.getElementById('provinciaFiltro');
     provincia = provinciaMenu.options[provinciaMenu.selectedIndex].value;
-    console.log(provincia);
+    //console.log(provincia);
 
     spuntaArticoliNuovi = document.getElementById("articoliNuovi").checked;
     console.log(spuntaArticoliNuovi);
 
-    spuntaArticoliUsati = document.getElementById("articoliNuovi").checked;
+    spuntaArticoliUsati = document.getElementById("articoliUsati").checked;
     console.log(spuntaArticoliUsati);
 
     var xhr = new ajaxRequest();
@@ -275,8 +290,16 @@ function popolaProvinceFiltro() {
                         var item = document.createElement('option');
                         item.setAttribute("value", province[i].prov);
                         item.innerText = province[i].prov;
+                        if (i == 0) {
+                            item.setAttribute("selected", "selected");
+                        }
                         menu.appendChild(item);
                     }
+                    provincia = document.getElementById("provinciaFiltro").value;
+                    console.log(provincia);
+                    
+                    filtraRicerca()
+
                 } else {
                     alert(risposta.msg);
                 }
@@ -286,6 +309,8 @@ function popolaProvinceFiltro() {
         xttp.send();
     } else {
         document.getElementById("provinciaFiltro").innerHTML = "<option value=nessuna> </option>";
+
+        filtraRicerca()
     }
 }
 
@@ -377,6 +402,9 @@ function popolaProvinceVendita() {
                         var item = document.createElement('option');
                         item.setAttribute("value", province[i].prov);
                         item.innerText = province[i].prov;
+                        if (i == 0) {
+                            item.setAttribute("selected", "selected");
+                        }
                         menu.appendChild(item);
                     }
                 } else {
@@ -412,6 +440,9 @@ function popolaProvinceVisibilita() {
                         var item = document.createElement('option');
                         item.setAttribute("value", province[i].prov);
                         item.innerText = province[i].prov;
+                        if (i == 0) {
+                            item.setAttribute("selected", "selected");
+                        }
                         menu.appendChild(item);
                     }
                 } else {
@@ -451,6 +482,7 @@ function popolaStatoUsura() {
                 var buono = document.createElement('option');
                 buono.setAttribute("value", "Buono");
                 buono.innerText = "Buono";
+                buono.setAttribute("selected", "selected");
                 statoUsuraMenu.appendChild(buono);
 
                 var medio = document.createElement('option');

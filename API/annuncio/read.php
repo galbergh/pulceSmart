@@ -11,8 +11,8 @@ include '../../includes/connection.php';
 
 //$json_err = json_last_error(); 
 
-//var_dump($_POST);
 //var_dump($json_err);
+//var_dump($_GET);
 
 $category = isset($_GET["categoria"])?$_GET["categoria"] : "nessuna";
 
@@ -31,42 +31,45 @@ $province = isset($_GET["provincia"])?$_GET["provincia"] : "nessuna";
 $newArticles = $_GET["spuntaNuovi"];
 $usedArticles = $_GET["spuntaUsati"];
 
+//print_r($newArticles);
+//print_r($usedArticles);
+
 function convertiFiltri($subcat, $prov, $new, $used) {
-    if ($subcat == "nessuna" && $prov == "nessuna" && $new == true && $used == true) {
+    if ($subcat == "nessuna" && $prov == "nessuna" && $new == "true" && $used == "") {
         $stringa = "";
-    } elseif ($subcat != "nessuna" && $prov == "nessuna" && $new == true && $used == true) {
+    } elseif ($subcat != "nessuna" && $prov == "nessuna" && $new == "true" && $used == "true") {
         $stringa = " AND sottocategoria = '$subcat'";
-    } elseif ($subcat == "nessuna" && $prov != "nessuna" && $new == true && $used == true) {
+    } elseif ($subcat == "nessuna" && $prov != "nessuna" && $new == "true" && $used == "true") {
         $stringa = " AND provincia_vendita = '$prov'";
-    } elseif ($subcat == "nessuna" && $prov == "nessuna" && $new == false && $used == true) {
+    } elseif ($subcat == "nessuna" && $prov == "nessuna" && $new == "false" && $used == "true") {
         $stringa = " AND NOT stato_articolo = 'Nuovo'";
-    } elseif ($subcat == "nessuna" && $prov == "nessuna" && $new == true && $used == false) {
+    } elseif ($subcat == "nessuna" && $prov == "nessuna" && $new == "true" && $used == "false") {
         $stringa = " AND NOT stato_articolo = 'Usato'";
-    } elseif ($subcat != "nessuna" && $prov != "nessuna" && $new == true && $used == true) {
+    } elseif ($subcat != "nessuna" && $prov != "nessuna" && $new == "true" && $used == "true") {
         $stringa = " AND sottocategoria = '$subcat' AND provincia_vendita = '$prov'";
-    } elseif ($subcat == "nessuna" && $prov != "nessuna" && $new == false && $used == true) {
+    } elseif ($subcat == "nessuna" && $prov != "nessuna" && $new == "false" && $used == "true") {
         $stringa = " AND provincia_vendita = '$prov' AND NOT stato_articolo = 'Nuovo'";
-    } elseif ($subcat == "nessuna" && $prov == "nessuna" && $new == false && $used == false) {
+    } elseif ($subcat == "nessuna" && $prov == "nessuna" && $new == "false" && $used == "false") {
         $stringa = " AND NOT stato_articolo = 'Nuovo' AND NOT stato_articolo = 'Usato'";
-    } elseif ($subcat != "nessuna" && $prov == "nessuna" && $new == false && $used == true) {
+    } elseif ($subcat != "nessuna" && $prov == "nessuna" && $new == "false" && $used == "true") {
         $stringa = " AND sottocategoria = '$subcat' AND NOT stato_articolo = 'Nuovo'";
-    } elseif ($subcat != "nessuna" && $prov == "nessuna" && $new == true && $used == false) {
+    } elseif ($subcat != "nessuna" && $prov == "nessuna" && $new == "true" && $used == "false") {
         $stringa = " AND sottocategoria = '$subcat' AND NOT stato_articolo = 'Usato'";
-    } elseif ($subcat == "nessuna" && $prov != "nessuna" && $new == true && $used == false) {
+    } elseif ($subcat == "nessuna" && $prov != "nessuna" && $new == "true" && $used == "false") {
         $stringa = " AND provincia_vendita = '$prov' AND NOT stato_articolo = 'Usato'";
-    } elseif ($subcat != "nessuna" && $prov != "nessuna" && $new == false && $used == true) {
+    } elseif ($subcat != "nessuna" && $prov != "nessuna" && $new == "false" && $used == "true") {
         $stringa = " AND sottocategoria = '$subcat' AND provincia_vendita = '$prov' AND NOT stato_articolo = 'Nuovo'";
-    } elseif ($subcat != "nessuna" && $prov != "nessuna" && $new == true && $used == false) {
+    } elseif ($subcat != "nessuna" && $prov != "nessuna" && $new == "true" && $used == "false") {
         $stringa = " AND sottocategoria = '$subcat' AND provincia_vendita = '$prov' AND NOT stato_articolo = 'Usato'";
-    } elseif ($subcat != "nessuna" && $prov == "nessuna" && $new == false && $used == false) {
+    } elseif ($subcat != "nessuna" && $prov == "nessuna" && $new == "false" && $used == "false") {
         $stringa = " AND sottocategoria = '$subcat' AND NOT stato_articolo = 'Nuovo' AND NOT stato_articolo = 'Usato'";
-    } elseif ($subcat == "nessuna" && $prov != "nessuna" && $new == false && $used == false) {
+    } elseif ($subcat == "nessuna" && $prov != "nessuna" && $new == "false" && $used == "false") {
         $stringa = " AND provincia_vendita = '$prov' AND NOT stato_articolo = 'Nuovo' AND NOT stato_articolo = 'Usato'";
-    } elseif ($subcat != "nessuna" && $prov != "nessuna" && $new == false && $used == false) {
+    } elseif ($subcat != "nessuna" && $prov != "nessuna" && $new == "false" && $used == "false") {
         $stringa = " AND sottocategoria = '$subcat' AND provincia_vendita = '$prov' AND NOT stato_articolo = 'Nuovo' AND NOT stato_articolo = 'Usato'";
     } 
     return $stringa;
-	//var_dump($stringa);
+	var_dump($stringa);
 }
 
 function leggiAnnunciFiltrati($connection, $filtersString) {
@@ -95,11 +98,7 @@ function leggiAnnunciFiltrati($connection, $filtersString) {
 
 	$res = $connection->query($sql);
 
-	if ($res==null) {
-		$msg = "Si sono verificati i seguenti errori:<br/>" . $res->error;
-		$risultato["status"]="ko";
-		$risultato["msg"]=$msg;			
-	} elseif($res->num_rows==0) {
+	if ($res==null || $res->num_rows==0) {
 		$msg = "Nessun annuncio corrisponde ai criteri di ricerca...";
 		$risultato["status"]="ko";
 		$risultato["msg"]=$msg;		
