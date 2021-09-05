@@ -133,8 +133,10 @@ function visualizzaAnnunci($connection, $annunci) {
 								<i class='far fa-star'></i>
 							</p>
 						</div>
-						<div class='card-footer'>
-							<i class='far fa-heart'></i>
+						<div class='card-footer' align=right>
+							<button class='btn'>
+								<i class='far fa-heart'></i>
+							</button>
 						</div>
 					</div>
 				</div>";

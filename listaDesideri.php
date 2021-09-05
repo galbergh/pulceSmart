@@ -20,38 +20,38 @@
 <body>
 
   <?php
+    session_start();
+
     include("includes/navigation.php");
   ?>
 
   <main>
       <!-- Page Content -->
       <div class="container">
+        <div class="dropdown-divider"></div>
         <div class="row justify-content-center">
-          <div class="col-lg-3">
+          <div class="card">
+            <h1 style="color:#c07348" class="my-4" align="center">
+              La mia lista dei desideri
+            </h1>
 
-            <h5 class="my-4" align="center">Filtri</h3>
+            <div class="col-lg-12 mt-3 ">
 
-              <?php
-                include("includes/filtri.php");
-              ?>
+              <div class="row justify-content-center">
 
-          </div>
-          <!-- /.col-lg-3 -->
+                <?php
+                  include("includes/listaAnnunci.php");
+                ?>
 
-          <div class="col-lg-9 mt-3 ">
-
-            <div class="row justify-content-center">
-
-              <?php
-                include("includes/listaAnnunci.php");
-              ?>
-
-            </div>
+              </div>
             <!-- /.row -->
+            </div>
           </div>
-          <!-- /.col-lg-9 -->
-
         </div>
+
+        <div class="dropdown-divider"></div>
+          
+          <!-- /.col-lg-9 -->
         <!-- /.row -->
         <div class="row justify-content-center">
           <nav aria-label="...">

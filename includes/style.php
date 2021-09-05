@@ -5,6 +5,8 @@
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 
 
+<link rel="stylesheet" type="text/css" href="assets/css/index.css"/>
+
 <link rel="stylesheet" type="text/css" href="assets/css/header.css"/>
 
 <link rel="stylesheet" type="text/css" href="assets/css/footer.css"/>
@@ -12,3 +14,5 @@
 <link rel="stylesheet" type="text/css" href="assets/css/modal.css"/>
 
 <link rel="stylesheet" type="text/css" href="assets/css/filters.css"/>
+
+

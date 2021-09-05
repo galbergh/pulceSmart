@@ -1,0 +1,11 @@
+#filter-heading {
+    background-color: #c07348;
+}
+
+#filter-tag {
+    color: #ffffff;
+}
+
+#filter-tag:focus {
+    box-shadow: none;
+}

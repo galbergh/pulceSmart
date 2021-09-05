@@ -1,17 +1,11 @@
-        .fa-heart {
+        .far:hover {
+            color: #c07348;
+        }
+
+
+        
+        .far:fa-heart {
             float: right;
-        }
-        
-        #filter-heading {
-            background-color: #c07348;
-        }
-        
-        #filter-tag {
-            color: #ffffff;
-        }
-        
-        #filter-tag:focus {
-            box-shadow: none;
         }
         
         .pagination-lg .page-link {
