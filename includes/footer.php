@@ -18,5 +18,7 @@
                 <small><i>&copy; La Pulce Smart. Tutti i diritti riservati.</i></small>
             </div>
         </div>
+        <br>
+        <div></div>
     </div>
 </footer>

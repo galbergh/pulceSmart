@@ -144,6 +144,8 @@ function visualizzaAnnunci($connection, $annunci) {
 	}
 }
 
+?>
+
 
 
 
