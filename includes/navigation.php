@@ -77,7 +77,7 @@ include("inserisciAnnuncio.php");
                   <i class="fas fa-angle-down"></i>
                 </a>
                 <div class="dropdown-menu" id="dropdown" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" id="dropdown-item" href="profiloUtente.php">
+                  <a class="dropdown-item" id="dropdown-item" href="index.php?op=profiloUtente">
                     Il mio profilo
                   </a>
                   <a class="dropdown-item" id="dropdown-item" href="listaDesideri.php">

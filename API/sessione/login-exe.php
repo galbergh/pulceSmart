@@ -27,8 +27,7 @@ function isUser($connection, $email, $pwd) {
 	} elseif($res->num_rows==1) {
 		$msg = "Login effettuato con successo";
 		$risultato["status"]="ok";
-		$risultato["msg"]=$msg;
-		$risultato["op"]="listaAnnunci";	
+		$risultato["msg"]=$msg;	
 	}
     return $risultato;
 }
@@ -49,7 +48,7 @@ if (isset($_POST['login'])) {
 			$connection->close();
 			$_SESSION["email"]=$email;
 			$_SESSION["logged"]=true;
-			header("Location:../../index.php?op=listaAnnunci&status=ok&msg=" . urlencode($result["msg"]));
+			header("Location:../../index.php?status=ok&msg=" . urlencode($result["msg"]));
 		} else {
 			header("Location:../../index.php?status=ko&msg=" . urlencode($result["msg"]));
 		}
