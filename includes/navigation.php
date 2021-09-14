@@ -11,14 +11,15 @@ include("inserisciAnnuncio.php");
       <div class="row justify-content-end">
       <?php if(!isset($_SESSION['logged'])){ ?>
         <div class="col-auto">
-          <a class="btn btn-dark my-1 my-sm-1" data-toggle="modal" data-target="#register-modal" id="register">
+          <a class="btn btn-dark my-1 my-sm-1" data-toggle="modal" data-target="#register-modal">
             Registrati
             <span class="divider"></span>
             <i class="fas fa-user-plus"></i>
           </a>
         </div>
         <div class="col-auto">
-          <a class="btn btn-dark my-1 my-sm-1" data-toggle="modal" data-target="#login-modal" id="login">
+          
+          <a class="btn btn-dark my-1 my-sm-1" data-toggle="modal" data-target="#login-modal">
             Accedi
             <span class="divider"></span>
             <i class="fas fa-sign-in"></i>
@@ -42,18 +43,21 @@ include("inserisciAnnuncio.php");
       </div>
     </div>
   </section>
+
   <div class="container-fluid py-3">
     <div class="row align-items-center">
-      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-3">
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
         <img class="img ml-2 mr-auto my-2" src="assets/img/logo/logoSite.png" width="170" height="83"/>
       </div>
-      <div class="col-lg-1 col-md-1 col-sm-2 col-xs-1"></div>
+      <div class="col-lg-1 col-md-2 col-sm-1 col-xs-1"></div>
 
-      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-5">
-        <nav class="navbar navbar-expand-lg navbar-expand-md navbar-dark ">
-          <button class="navbar-toggler"  type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
+      <div class="col-lg-9 col-md-8 col-sm-7 col-xs-7">
+        <nav class="navbar navbar-expand-lg navbar-dark ">
+
+          <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav">
               <li class="nav-item active">
@@ -65,8 +69,8 @@ include("inserisciAnnuncio.php");
                 </a>
               </li>
               <li class="nav-item active">
-                <a class="nav-link" href="aboutUs.php">
-                  About Us
+                <a class="nav-link">
+                  Chi siamo
                 </a>
               </li>
               <?php if (isset($_SESSION['logged'])){ ?>
@@ -92,21 +96,51 @@ include("inserisciAnnuncio.php");
                 </div>
               </li>
               <div class="divider"></div>
+              <br>
               <a class="btn btn-outline-light" data-toggle="modal" data-target="#annuncio-modal" id="annuncio">
                 Inserisci annuncio
                 <span class="divider"></span>
                 <i class="fas fa-plus-circle"></i>
               </a>
+              <div class="divider"></div>
+              <br>
+              <!-- Carrello -->
+							<a class="btn btn-outline-light">
+                Carrello
+                <span class = "divider"></span>
+                <i class="fas fa-shopping-cart"></i> 
+							</a>
+              <div class="divider"></div>
+              <br>
+
+              <a class="btn btn-outline-light">
+                <i class="fas fa-bell"></i>
+							</a>
+
+							<!-- Pannello notifiche -->
+							<div class="modal fade" id="notifiche" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+								<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+									<div class="modal-content">
+										<div class="modal-header pb-0">
+											<h4 class="py-2"><i class="fas fa-comment-dots"></i>&nbsp Notifiche</h4>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body text-center">
+											<div class="category-list">
+													<?php
+													include $_SERVER["DOCUMENT_ROOT"] . $root_path . '/common/gestione_notifiche.php';
+													?>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
               <?php }?>
             </ul>
           </div>
         </nav>
-      </div>
-
-      <div class="col-lg-3 col-md-3 col-sm-12 col-xs-6">
-        <form class="form-inline ml-3 mr-3 my-2">
-          <input class="form-control w-100" type="search" placeholder="Cerca" aria-label="Cerca">
-        </form>
       </div>
     </div>
   </div>

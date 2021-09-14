@@ -1,8 +1,6 @@
-        .far:hover {
+        .fa-heart:hover {
             color: #c07348;
         }
-
-
         
         .far:fa-heart {
             float: right;

@@ -104,6 +104,7 @@ function visualizzaAnnunci($connection, $annunci) {
 		$foto = base64_decode($annuncio["foto"]);
 		$nomeArticolo = $annuncio["nome_articolo"];
 		$prezzo = $annuncio["prezzo"];
+		$statoArticolo = $annuncio["stato_articolo"];
 
 		echo   "<div class='col-lg-4 col-md-6 mb-4'> 
 					<div class='card h-100'>
@@ -111,11 +112,14 @@ function visualizzaAnnunci($connection, $annunci) {
 							<img class='card-img-top' src=$foto>
 						</a>
 						<div class='card-body'>
+							<div class='dropdown-divider'></div>
 							<h4 class='card-title'>
 								<a style='color:#c07348' href='annuncio.php'>
 									$titolo
 								</a>
 							</h4>
+							<div class='dropdown-divider'></div>
+							<br>
 							<p>
 								<strong>
 									$prezzo
@@ -124,8 +128,19 @@ function visualizzaAnnunci($connection, $annunci) {
 									<i class='far fa-euro-sign'></i>
 								</span>
 							</p>
+							<p>
+								<strong>
+									$statoArticolo
+								</strong>
+							</p>
+							<br>
+							<p>
+								<strong> 
+									Venditore:
+								</strong>
+							</p>
 							<p> 
-								Venditore: $venditore 
+								$venditore 
 								<i class='far fa-star'></i>
 								<i class='far fa-star'></i>
 								<i class='far fa-star'></i>

@@ -1,6 +1,6 @@
 <!-- Modal -->
 <div class="modal fade" id="login-modal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="login-label" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <form method="POST" action="API/sessione/login-exe.php">  
         <div class="modal-header">
@@ -26,6 +26,26 @@
                   Password
                 </label>
                 <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
+
+                <p>
+                  <small class="text-center" style="color:#c07348">
+                    Hai dimenticato la password?
+                  </small>
+                  <a data-dismiss="modal" style="color:#c07348" data-toggle="modal">
+                    <small>
+                      Clicca Qui
+                    </small>
+                  </a>
+                  <br>            
+                  <small class="text-center" style="color:#c07348">
+                    Non sei registrato?
+                  </small>  
+                  <a href="#register-modal" style="color:#c07348" data-toggle="modal" data-target="#register-modal" data-dismiss="modal" id="linkToReg">
+                    <small>
+                      Clicca Qui
+                    </small>
+                  </a>
+                </p>
                 
               </div>
             </div>
@@ -37,17 +57,12 @@
             <span class="divider"></span>
             <i class="fas fa-sign-in"></i>
           </button>
-          <small class="text-center" style="color:#ffffff">
-            Non sei registrato?
-            <a href="registrazione.php" data-dismiss="modal" style="color:#ffffff" data-toggle="modal" data-target="#register-modal" id="register">
-              Clicca Qui
-            </a>
-          </small>
         </div>
       </form>
     </div>
   </div>
 </div>
+
 
 <?
 

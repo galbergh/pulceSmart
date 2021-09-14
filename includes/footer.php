@@ -7,10 +7,16 @@
             </div>
 
             <div class="col-lg-8" id="contacts">
-                <h5><i>Contatti</i></h5>
-                <p><i>Stefano Roccella : stefano.roccella@studenti.unimi.it
-                <br>
-                Giorgio Alberghina : giorgio.alberghina@studenti.unimi.it</p>
+                <h5>Contatti</h5>
+                <p>
+                    <i>
+                        Stefano Roccella : stefano.roccella@studenti.unimi.it
+                    </i>
+                    <br>
+                    <i>
+                        Giorgio Alberghina : giorgio.alberghina@studenti.unimi.it
+                    </i>
+                </p>
             </div>
         </div>
         <div class="row">

@@ -30,6 +30,7 @@
 
   <!-- Page Content -->
   <main>
+    
     <div class="container-fluid">
       <div class="dropdown-divider"></div>
       
@@ -55,7 +56,7 @@
         } else {
       ?>
           <div class="row justify-content-center">
-            <div class="col-lg-3">
+            <div class="col-xl-3 col-lg-12 col-md-12 col-sm-12">
               <div class="card">
                 <h5 style="color:#c07348" class="my-4" align="center">
                   Filtra ricerca
@@ -65,7 +66,7 @@
                   include("includes/filtri.php");
                 ?>
               </div>
-              <div class="col-lg-9">
+              <div class="col-xl-9 col-lg-12 col-md-12 col-sm-12">
                 <div class="well">
                   <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
                     <ol class="carousel-indicators">

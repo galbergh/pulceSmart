@@ -20,74 +20,78 @@ include("completaProfilo.php");
           <div class="row justify-content-center">
             <div class="col-12 col-md-8">
               <div class="form-group">
-                <label for="inputName">
-                  Nome
+                <label class="font-weight-bold text-dark" for="inputName">
+                  Nome e cognome
                 </label>
-                <input type="input" class="form-control" name="" id="nameRegister" aria-describedby="name" placeholder="Nome">
+                <div class = "d-flex justify-content-around">
+                  <input type="text" name = "nome" placeholder="Nome*" class="form-control" required>
+                  <input type="text" name = "cognome" placeholder="Cognome*" class="form-control" required>
+                </div>
               </div>
               <div class="form-group">
-                <label for="inputCognome">
-                  Cognome
-                </label>
-                <input type="text" class="form-control" name="" id="surnameRegister" placeholder="Cognome">
-              </div>
-              <div class="form-group">
-                <label for="inputCodFisc">
+                <label class="font-weight-bold text-dark" for="inputCodFisc">
                   Codice fiscale
                 </label>
-                <input type="text" class="form-control" name="" id="cfRegister" placeholder="Codice Fiscale">
+                <input type="text" class="form-control" name="" id="cfRegister" placeholder="Codice Fiscale*">
               </div>
+              <div class="dropdown-divider"></div>
+              <div class="dropdown-divider"></div>
               <div class="form-group">
-                <label for="inputDomicilio">
+                <label class="font-weight-bold text-dark" for="inputDomicilio">
                   Domicilio
                 </label>
-                <input type="text" class="form-control" name="" id="addressRegister" placeholder="Via o piazza">
+                <div class = "d-flex justify-content-around">
+                  <input type="text" class="form-control" name="" id="addressRegister" placeholder="Via o piazza*">
+                  <input type="number" class="form-control" name="" id="address-numberRegister" placeholder="Numero civico*">
+                </div>
               </div>
               <div class="form-group">
-                <input type="number" class="form-control" name="" id="address-numberRegister" placeholder="Numero civico">
+                <label class="font-weight-bold text-dark" for="inputRegion">
+                  Regione e provincia
+                </label>
+                <div class = "d-flex justify-content-around">
+                  <select class="form-control" id="regioneRegistrazione">
+                    <option value="nessuna" selected>Regione*</option>
+                  </select>
+                  <select class="form-control" id="provinciaRegistrazione">
+                    <option value="nessuna" selected>Provincia*</option>
+                  </select>
+                </div>
               </div>
               <div class="form-group">
-                <label for="inputCity">
+                <label class="font-weight-bold text-dark" for="inputCity">
                   Città
                 </label>
-                <input type="text" class="form-control" name="" id="cityRegister" placeholder="Città">
+                <input type="text" class="form-control" name="" id="cityRegister" placeholder="Città*">
               </div>
+              <div class="dropdown-divider"></div>
+              <div class="dropdown-divider"></div>
               <div class="form-group">
-                <label for="inputRegion">
-                  Regione
-                </label>
-                <select class="form-control" id="regioneRegistrazione">
-                  <option value="nessuna" selected></option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="inputProvince">
-                  Provincia
-                </label>
-                <select class="form-control" id="provinciaRegistrazione">
-                  <option value="nessuna" selected></option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="inputEmail">
-                  Email
-                </label>
-                <input type="email" class="form-control" name="" id="emailRegister" placeholder="Email">
-              </div>
-              <div class="form-group">
-                <label for="inputPassword">
-                  Password
-                </label>
-                <input type="password" class="form-control" name="" id="pwdRegister" placeholder="Password">
-              </div>
-              <div class="form-group">
-                <label for="inputUserName">
+                <label class="font-weight-bold text-dark" for="inputUserName">
                   Nome utente
                 </label>
-                <input type="text" class="form-control" name="" id="userRegister" placeholder="Nome Utente">
+                <input type="text" class="form-control" name="" id="userRegister" placeholder="Nome Utente*">
                 <small id="userRegisterlHelp" class="form-text text-muted">
                   Gli altri utenti vedranno solo questo nome.
                 </small>
+              </div>
+              <div class="form-group">
+                <label class="font-weight-bold text-dark" for="inputEmail">
+                  Email
+                </label>
+                <input type="email" class="form-control" name="" id="emailRegister" placeholder="Indirizzo e-mail*">
+              </div>
+              <div class="form-group">
+                <label class="font-weight-bold text-dark" for="inputPassword">
+                  Crea una password
+                </label>
+                <input type="password" class="form-control" name="" id="pwdRegister" placeholder="Password*">
+              </div>
+              <div class="form-group">
+                <label class="font-weight-bold text-dark" for="inputPassword">
+                  Conferma password
+                </label>
+                <input type="password" class="form-control" name="" id="pwdConfirm" placeholder="Password*">
               </div>
             </div>
           </div>
@@ -99,7 +103,7 @@ include("completaProfilo.php");
           <span class="divider"></span>
           <i class="fas fa-times"></i>
         </button>
-        <button type="button" class="btn btn-outline-light" id="confermaRegistrazione">
+        <button type="button" class="btn btn-outline-light" id="confermaRegistrazione" data-toggle="modal" data-target="#completaProfilo-modal" data-dismiss="modal">
           Conferma
           <span class="divider"></span>
           <i class="fas fa-user-plus"></i>
